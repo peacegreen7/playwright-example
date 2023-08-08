@@ -3,12 +3,15 @@
 *
 * */
 
+require('dotenv').config()
+
 const {test, expect} = require('@playwright/test')
 
 test('should be able to perform CRUD on post type', async ({request}) => {
 
     // Construct data
-    const baseUrl = 'https://jsonplaceholder.typicode.com';
+    // const baseUrl = 'https://jsonplaceholder.typicode.com';
+    const baseUrl = process.env.BASE_URL
     const postContent = {
         title: 'foo',
         body: 'bar',
@@ -35,7 +38,7 @@ test('should be able to perform CRUD on post type', async ({request}) => {
     const postRes = await request.post(baseUrl + '/posts', postOptions);
     const postJsonBody = await postRes.json();
     let postId = postJsonBody.id; // 101
-    postId = Number(postId) - 1; // 100
+    postId = Number(postId) - 51; // 100
     // TODO: Verification
 
     // Reuse the post ID to read the details
@@ -50,4 +53,6 @@ test('should be able to perform CRUD on post type', async ({request}) => {
     // Delete the post
     const deleteRes = await request.delete(`${baseUrl}/posts/${postId}`);
     // TODO: Verification
+    console.log(typeof(JSON.stringify(getJsonBody)))
+    console.log(typeof(getJsonBody))
 })
