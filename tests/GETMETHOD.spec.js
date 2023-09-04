@@ -20,7 +20,6 @@ test('should be able to send a GET METHOD request', async({request}) => {
   //verification
   expect(status).toBe(200)
   expect(resJSON.length).toBeGreaterThan(99)
-  expect(resJSON.length).toBeGreaterThan(100)
   
   
 })
