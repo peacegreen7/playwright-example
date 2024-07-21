@@ -14,6 +14,8 @@ Visit the official Node.js website at https://nodejs.org/.
 ```sh
 npm i @cucumber/cucumber -D
 npm i ts-node -D
+npm i cross-env
+npm i dotenv
 ```
 > Note: ***ts-node*** is a TypeScript execution environment for **Node.js**.
 
