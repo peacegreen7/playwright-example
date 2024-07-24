@@ -1,5 +1,5 @@
-import { Then, Given } from "@cucumber/cucumber";
-import { expect } from "@playwright/test";
+const { Then, Given } = require("@cucumber/cucumber");
+const { expect } = require("@playwright/test");
 
 let numberOfApples = 0;
 let total = 0;
