@@ -2,12 +2,10 @@ const { exec } = require('child_process');
 
 const service = process.env.SERVICE || 'demo';
 const configFilePath = `configs/cucumber-${service}.js`;
-// const configFilePath = `./configs/cucumber-${service}.js`;
 
 const runCucumber = async () => {
   try {
     const command = `npx cucumber-js test --config ${configFilePath}`;
-    // const command = `cross-env service=${service} cucumber-js test --config ${configFilePath}`;
 
     console.log('Running command:', command);
 
