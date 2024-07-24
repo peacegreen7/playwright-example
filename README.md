@@ -22,34 +22,39 @@ npm i dotenv
 ### 5. Project structure
 - Create a features folder that describes the behavior you want to test under src\test folder.
 - Create a steps folder that contains the step definitions under src\test folder.
+- Create a config folder that contains the config files
+- Directory Structure
+```bash
+project-root/
+├── dist/
+│   └── test/
+│       └── demo/
+│           └── steps/
+│               └── steps.js
+├── src/
+│   └── test/
+│       └── demo/
+│           ├── features/
+│           │   └── my-feature.feature
+│           └── steps/
+│               └── steps.ts
+├── configs/
+│   ├── cucumber-demo.js
+│   └── cucumber.js
+├── tsconfig.json
+├── package.json
+```
 
-### 6. Run Commands
-Inside project directory, you can run several commands:
+### 6. Add scripts for run test in file ***package.json***
+```json
+"scripts": {
+    "build": "tsc", // This is the build script using TypeScript Compiler
+    "test": "cross-env npm run build && node run-cucumber.js"
+  }
+```
+The TypeScript Compiler (tsc) compiles TypeScript files (.ts) into JavaScript files (.js). The configuration for this process is specified in the ***tsconfig.json*** file. </br>
 
-  ```npx playwright test``` <br />
-> Runs the end-to-end tests.
-
-  ```npx playwright test --ui``` <br />
-> Starts the interactive UI mode.
-
-  ```npx playwright test --project=chromium``` <br />
-> Runs the tests only on Desktop Chrome.
-
-  ```npx playwright test example``` <br />
-> Runs the tests in a specific file.
-
-  ```npx playwright test --debug```
- > Runs the tests in debug mode.
-
-```npx playwright codegen```
- > Auto generate tests with Codegen.
-
-We suggest that you begin by typing:
-
-    npx playwright test
-
-And check out the following files:
-  - ./e2e/example.spec.ts -> Example end-to-end test
-  - ./tests-examples/demo-todo-app.spec.ts -> Demo Todo App end-to-end tests
-  - ./playwright.config.ts -> Playwright Test configuration
-
+### 7. Run Commands
+```sh
+npm run build; SERVICE=<service-name> npm run test
+```
