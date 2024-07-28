@@ -9,11 +9,7 @@ Given('User navigates to page', async () => {
     }
 });
 
-Then('User see page title', async () => {
-    try {
-        const title = await page.title;
-        expect(title.toEqual('Google'));
-    } catch (error) {
-        console.log("Log: " + error);
-    }
+Then('User sees page title is {string}', async function (expectedTitle: string) {
+    const title = await page.title();
+    expect(title).to.equal(expectedTitle);
 });

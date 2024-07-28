@@ -16,6 +16,7 @@ npm i @cucumber/cucumber -D
 npm i ts-node -D
 npm i cross-env
 npm i dotenv
+npm i cucumber-html-reporter
 ```
 > Note: ***ts-node*** is a TypeScript execution environment for **Node.js**.
 
@@ -55,6 +56,11 @@ project-root/
 The TypeScript Compiler (tsc) compiles TypeScript files (.ts) into JavaScript files (.js). The configuration for this process is specified in the ***tsconfig.json*** file. </br>
 
 ### 7. Run Commands
+Run test
 ```sh
 npm run build; SERVICE=<service-name> npm run test
+```
+Run test and generate report
+```sh
+npm run build; SERVICE=<service-name> npm run test:report
 ```
