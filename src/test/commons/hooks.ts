@@ -1,5 +1,7 @@
-import { Before, After, setDefaultTimeout, BeforeAll, AfterAll } from '@cucumber/cucumber';
+import { Before, After, setDefaultTimeout, BeforeAll, AfterAll, Status } from '@cucumber/cucumber';
 import { chromium, Browser, BrowserContext } from '@playwright/test';
+import fs from 'fs';
+import path from 'path';
 
 let browser: Browser;
 let contextBrowser: BrowserContext;
@@ -16,7 +18,13 @@ Before(async () => {
   global.page = page;
 });
 
-After(async () => {
+After(async function (scenario) {
+  if (scenario.result?.status === Status.FAILED) {
+    const screenshotPath = path.resolve(`screenshots/${scenario.pickle.name.replace(/ /g, '_')}.png`);
+    await global.page.screenshot({ path: screenshotPath });
+    this.attach(fs.readFileSync(screenshotPath), 'image/png');
+  }
+
   await global.page.close();
   await contextBrowser.close();
 });
