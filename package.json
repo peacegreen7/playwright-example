@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "prepare": "node scripts/create-screenshots-dir.js",
     "test": "cross-env npm run build && node run-cucumber.js",
     "report": "node generate-report.js",
     "test:report": "npm run build && SERVICE=$SERVICE npm run test && npm run report",
